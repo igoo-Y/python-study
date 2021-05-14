@@ -24,7 +24,7 @@ for player in players :
 
     print(number,name)
 
-logo_mask = np.array(Image.open('/Users/yang-ingyu/Desktop/pythonstudy/spurs.jpeg'))
+logo_mask = np.array(Image.open('/Users/yang-ingyu/Desktop/pythonstudy/python.png'))
 
 wc = WordCloud(background_color = 'white', width = 600, height = 800)
 mask = logo_mask
