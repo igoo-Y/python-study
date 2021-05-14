@@ -3,7 +3,10 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from wordcloud import WordCloud
 
-driver = webdriver.Chrome('')
+from PIL import Image
+import numpy as np
+
+driver = webdriver.Chrome('chromedriver')
 driver.get('https://www.tottenhamhotspur.com/teams/men/players/')
 
 html = driver.page_source
@@ -11,11 +14,20 @@ soup = BeautifulSoup(html, 'html.parser')
 
 text = ""
 
-players = soup.select('#react_YFzEXth7UC2oZ7lkLILHg > div > div:nth-child(1)')
+players = soup.select('#react_YFzEXth7UC2oZ7lkLILHg > div > div:nth-child(1) > a')
 
-for player in player :
-    name = player.select_one('div.PlayersPlayer__info > div.PlayersPlayer__name').text
+for player in players :
     number = player.select_one('div.PlayersPlayer__info > div.PlayersPlayer__number').text
-    text += name
+    name = player.select_one('div.PlayersPlayer__info > div.PlayersPlayer__name').text
+
+    text +=name
 
     print(number,name)
+
+logo_mask = np.array(Image.open('/Users/yang-ingyu/Desktop/pythonstudy/spurs.jpeg'))
+
+wc = WordCloud(background_color = 'white', width = 600, height = 800)
+mask = logo_mask
+wc.generate(text)
+
+wc.to_file('spurs_wordcloud.png')
