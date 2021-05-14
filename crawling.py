@@ -5,6 +5,7 @@ from wordcloud import WordCloud
 
 from PIL import Image
 import numpy as np
+from wordcloud.wordcloud import FONT_PATH
 
 driver = webdriver.Chrome('chromedriver')
 driver.get('https://www.tottenhamhotspur.com/teams/men/players/')
@@ -24,9 +25,11 @@ for player in players :
 
     print(number,name)
 
-logo_mask = np.array(Image.open('/Users/yang-ingyu/Desktop/pythonstudy/python.png'))
+logo_mask = np.array(Image.open('/Users/yang-ingyu/Desktop/pythonstudy/apple.png'))
 
-wc = WordCloud(background_color = 'white', width = 600, height = 800)
+font_path = '/Volumes/Machintosh HD/System/Library/Fonts/Helvetica.ttc'
+
+wc = WordCloud(font_path=font_path, background_color = 'white', width = 600, height = 800, mask=logo_mask)
 mask = logo_mask
 wc.generate(text)
 
