@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from firstapp import views as first
 from wordCount import views as wc
+from blog.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('hello/', first.hello, name="hello"),
     path('wc/', wc.home, name="wc"),
     path('wc/result', wc.result, name="result"),
+    path('index/', index, name="index"),
 ]
